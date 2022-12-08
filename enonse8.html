@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>enonse8</title>
+    <style>
+        input{
+            border-color:  #777;
+        }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="group">
+        <input type="text" />
+      </div>
+      <div class="group">
+        <input type="text" />
+      </div>
+      <div class="group">
+        <input type="text" />
+      </div>
+      <div class="group">
+        <input type="text" />
+      </div>
+      <div class="group">
+        <input type="text" />
+      </div>
+      <button>Next</button>
+    </main>
+
+    <script>
+      const allInput = document.querySelectorAll("input");
+      for (let i = 0; i < allInput.length; i++) {
+        allInput[i].onfocus = (event) => {
+          event.target.style.borderColor = "#0275d8";
+        };
+      }
+      for (let i = 0; i < allInput.length; i++) {
+        allInput[i].onblur = (event) => {
+          event.target.style.borderColor = "#777";
+        };
+      }
+      allInput[0].focus();
+      const bouton = document.querySelector("button");
+      let i = 0;
+      bouton.onclick = () => {
+        i++;
+        if (i > 4) {
+          i = 0;
+          allInput[i].focus();
+        } else {
+          allInput[i].focus();
+        }
+      };
+    </script>
+  </body>
+</html>

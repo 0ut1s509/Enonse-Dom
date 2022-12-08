@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enonse9</title>
+  </head>
+  <body>
+    <button id="action">AKSYON</button>
+    <hr />
+    <div>
+      <label
+        >Tape aksyon ou vle simile sou bouton ki anlè a, nan lis sa [click, dbclick, aksyonpam]<br />Epi peze ENTER sou klavye a pou w valide</label><br />
+      <input type="text" name="event-name" placeholder="Non aksyon an..." />
+      <br><br>
+      <div class="mesaj" style="color: #f44336; font-style: italic;">
+
+      </div>
+      <div class="mesaj1" style="color: #06fc1a; font-style: italic;">
+
+      </div>
+    </div>
+
+    <script>
+        const bouton = document.getElementById("action");
+       const input = document.querySelector("input");
+
+      const doubleClickEvent = new Event("dbclick");
+      const aksyonpam= new Event("aksyonpam");
+
+      const mesaj = document.querySelector(".mesaj");
+      const mesaj1 = document.querySelector(".mesaj1")
+
+
+       input.onkeydown = (event)=>{
+            let charCode = event.code;
+            if(charCode === "Enter"){
+                if((input.value).toLowerCase() ==="click"){
+                    bouton.click();
+                    mesaj.innerHTML = "";
+
+                    if(bouton.click){
+                    }
+                }else if((input.value).toLowerCase() ==="dbclick"){
+                    bouton.dispatchEvent(doubleClickEvent);
+                    mesaj.innerHTML = "";
+
+                }else if((input.value).toLowerCase() ==="aksyonpam"){
+                    bouton.dispatchEvent(aksyonpam);
+                    mesaj.innerHTML = "";
+
+                }else{
+                    mesaj.innerHTML = "Evènman sa pa valid"
+                }
+            }
+       }
+          ['click', 'dbclick','aksyonpam'].forEach(evt=>bouton.addEventListener(evt,()=>{
+            console.log(evt);
+            mesaj1.innerHTML = `Evènman sa valid. Se ${evt}`
+          }));
+          
+          input.oninput = ()=>{
+            mesaj1.innerHTML = ``;
+
+          }
+
+
+       
+    </script>
+  </body>
+</html>
