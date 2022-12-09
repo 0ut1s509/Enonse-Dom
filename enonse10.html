@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enonse10.html</title>
+</head>
+<body>
+    
+    <main>
+        <h1>What is Lorem Ipsum?</h1>
+        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        
+        <button id="copy">📋</button>
+      </main> 
+      
+      <script>
+            const h1 = document.querySelector('h1');
+            const p = document.querySelector('p');
+            const bouton = document.querySelector('button')
+            const copyEnv = new Event('copy');
+
+            h1.oncopy = (event)=>{
+                event.preventDefault()          
+            }
+
+            p.oncopy = (event)=>{
+                event.preventDefault()           
+            }
+            
+            bouton.onclick = (event)=>{
+                let range = document.createRange() // oubyen ak metòd la
+                // p.firstChild referans nod tèks la.
+                range.setStart(h1.firstChild, 0) // seleksyon an kòmanse nan 0
+                range.setEnd(p.firstChild, p.textContent.length) // li fini nan longè tèks la
+
+                // rekipere seleksyon ki nan DOM nan.
+                let selection = document.getSelection();
+
+                // rann seleksyon an vizib nan navigatè a
+                selection.addRange(range);
+                navigator.clipboard.writeText( selection.toString() );
+                
+                
+            }
+      </script>
+</body>
+</html>

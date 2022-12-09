@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enonse11</title>
+    <style>
+      div {
+        height: 300px;
+        width: 300px;
+        background-color:#000;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+
+    <script>
+      let xMousePos = 0;
+      let yMousePos = 0;
+      const div = document.querySelector("div");
+      div.onmousemove = (event) => {
+        xMousePos = event.x + window.pageXOffset;
+        yMousePos = event.y + window.pageYOffset;
+        let x = xMousePos - div.offsetLeft;
+        let y = yMousePos - div.offsetTop;
+        
+        if (
+          x<= 255 &&
+          y <= 255 &&
+          (x+y)/ 2<= 255
+        ) {
+          div.style.backgroundColor =
+            "rgb(" +
+            x+
+            "," +
+            y +
+            "," +
+            [(x+ y) / 2] +
+            ")";
+        }
+      };
+    </script>
+  </body>
+</html>
