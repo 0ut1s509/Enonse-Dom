@@ -1,4 +1,10 @@
-import { fetchData } from "./api.js"
+ async  function fetchData(url){
+    const r = await fetch(url);
+    if(r.ok == true){
+        return r.json()
+    }throw new Error('impossible de contacter le serveur')
+}
+
 const bouton = document.querySelector('button');
 const div = document.querySelector('.data-wrapper')
 bouton.onclick =async ()=>{
