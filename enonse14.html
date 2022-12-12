@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>enonse14</title>
+    <style>
+      .div1 {
+        position: absolute;
+        height: 300px;
+        width: 300px;
+        background-color: black;
+      }
+
+      .div2 {
+        position: relative;
+        height: 20px;
+        width: 20px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1">
+      <div class="div2"></div>
+    </div>
+
+    <script>
+      const div1 = document.querySelector(".div1");
+      const div2 = document.querySelector(".div2");
+
+      let move = false;
+
+      div2.onmousedown = () => {
+        move = true;
+      };
+      div2.onmouseup = () => {
+        move = false;
+      };
+
+      div1.onmousemove = (e) => {
+        if (move === true) {
+            if (e.clientX <= 300 && e.clientY <= 300 && e.clientX >=20 && e.clientY >=20){
+                div2.style.top = `${e.clientY - 20}px`;
+                div2.style.left = `${e.clientX - 20}px`;
+            }
+        }
+      };
+      div1.onmousedown = (e) => {
+        if (e.clientX <= 300 && e.clientY <= 300 && e.clientX >=20 && e.clientY >=20){
+            div2.style.top = `${e.clientY-20}px`;
+            div2.style.left = `${e.clientX-20}px`;
+        }
+      };
+    </script>
+  </body>
+</html>
