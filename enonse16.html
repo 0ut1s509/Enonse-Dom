@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enonse16</title>
+  </head>
+  <body>
+    <div>
+      <form>
+        <input type="text" placeholder="Search..." name="entry" />
+        <button type="submit">SEARCH</button>
+      </form>
+
+      <p>
+        Vulputate mi sit amet mauris. Aliquam ut porttitor leo a diam
+        sollicitudin. Odio euismod lacinia at quis risus sed. Id diam maecenas
+        ultricies mi eget mauris pharetra. Euismod elementum nisi quis eleifend
+        quam adipiscing. Enim sit amet venenatis urna. At imperdiet dui accumsan
+        sit amet nulla facilisi morbi. Non enim praesent elementum facilisis.
+        Sagittis orci a scelerisque purus semper eget duis. Eget magna fermentum
+        iaculis eu non diam phasellus.
+      </p>
+
+      <p>
+        Scelerisque varius morbi enim nunc faucibus a pellentesque. Diam vel
+        quam elementum pulvinar etiam non quam. Ante metus dictum at tempor.
+        Adipiscing enim eu turpis egestas. Dignissim sodales ut eu sem integer
+        vitae justo. Sed risus pretium quam vulputate dignissim. Sit amet
+        volutpat consequat mauris nunc congue. Magna eget est lorem ipsum dolor
+        sit amet. Ac placerat vestibulum lectus mauris ultrices eros in cursus.
+        Egestas integer eget aliquet nibh praesent tristique magna sit amet.
+      </p>
+    </div>
+
+    <script>
+      function coloriserString(text, debut, fin, color) {
+        return (
+          text.substring(0, debut) +
+          "<span style='color:" +
+          color +
+          "; font-weight:bold;'>" +
+          text.substring(debut, fin + 1) +
+          "</span>" +
+          text.substring(fin + 1)
+        );
+      }
+      const form = document.querySelector("form");
+      const input = document.querySelector("input");
+      const bouton = document.querySelector("button");
+
+      const p = document.querySelectorAll("p");
+
+      bouton.onclick = (e) => {
+        e.preventDefault();
+
+        let p1 = p[0].innerHTML
+        let p2 = p[1].innerHTML
+
+        let search = input.value
+        p1 = p1.split(`<span style="color: green; font-weight: bold;">`).join("");
+        p1 = p1.split(`</span>`).join("");
+
+        p2 = p2.split(`<span style="color: green; font-weight: bold;">`).join("");
+        p2 = p2.split(`</span>`).join("");
+        if (search !=""){
+          let reg = new RegExp(search, "ig");
+          let replace = `<span style="color: green; font-weight: bold;">${search}</span>`
+          p1 = p1.replace(reg,replace);
+          p2 = p2.replace(reg,replace);
+
+          p[0].innerHTML = p1;
+          p[1].innerHTML = p2;
+
+        }
+       
+      };
+    </script>
+  </body>
+</html>
