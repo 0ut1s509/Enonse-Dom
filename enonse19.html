@@ -16,7 +16,9 @@
         async function fetchTodo(){
             try{
                 const r = await fetch("https://jsonplaceholder.typicode.com/todos")
-                return r.json()
+                if(r.ok===true){
+                    return r.json()
+                }
             }catch(e){
                 console.log("impossible de contacter le serveur")
             }
@@ -29,44 +31,45 @@
                 
                 let h3, input,labelId,hr,bouton; 
                 if(todos){
-                    main.innerHTML =""
+                    main.innerHTML ="";
+                    for(let el of todos){
+                        hr = document.createElement('hr')
+                        h3 = document.createElement('h3');
+
+                        input = document.createElement('input');
+                        input.setAttribute("type","checkbox");
+                        labelId = document.createElement("label");
+
+
+                        h3.innerText =`${el.title}`;
+
+                        if(el.completed == true){
+                            input.checked = true;
+                        }else{
+                            input.checked = false;
+                        }
+                        
+                        labelId.innerText =`ID: ${el.id}`
+
+                        main.append(h3);
+                        main.append(input);
+                        main.append(document.createElement("br"))
+                        main.append(labelId);
+                        main.append(hr);
+                    }
+
+                    bouton = document.createElement("button");
+                    bouton.innerText ="Reload"
+                    bouton.setAttribute("id","reload");
+                    bouton.setAttribute("onclick","reload()");
+
+                main.append(bouton);  
                 }else{
                     main.innerHTML =`<h1 style="color:red">impossible de contacter le serveur</h1>`
 
                 }
 
-                for(let el of todos){
-                    hr = document.createElement('hr')
-                    h3 = document.createElement('h3');
-
-                    input = document.createElement('input');
-                    input.setAttribute("type","checkbox");
-                    labelId = document.createElement("label");
-
-
-                    h3.innerText =`${el.title}`;
-
-                    if(el.completed == true){
-                        input.checked = true;
-                    }else{
-                        input.checked = false;
-                    }
-                    
-                    labelId.innerText =`ID: ${el.id}`
-
-                    main.append(h3);
-                    main.append(input);
-                    main.append(document.createElement("br"))
-                    main.append(labelId);
-                    main.append(hr);
-                }
-
-                bouton = document.createElement("button");
-                bouton.innerText ="Reload"
-                bouton.setAttribute("id","reload");
-                bouton.setAttribute("onclick","reload()");
-
-                main.append(bouton);                                
+                              
             }
         }
 
