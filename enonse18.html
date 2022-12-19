@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enonse18</title>
+</head>
+<body>
+    <main>
+ 
+        <p class="content"> Mwen pare pou m aprann ReactJS </p>
+        <button>Load content</button>
+      </main>
+
+    <script>
+        const bouton = document.querySelector("button");
+        const main = document.querySelector("main");
+        let i = 0;
+    function spin(){
+            main.innerHTML =`<div style="display:flex; justify-content:center; align-items:center"><img src="giphy2-unscreen.gif" alt=""  width="100%"></div> `
+            
+            const atant = setInterval(() => {
+                i++;
+                if(i==3){
+                    clearInterval(atant)
+                    main.innerHTML = `<p class="content"> Mwen pare pou m aprann ReactJS </p>
+                    <button onclick="spin()">Load content</button>`
+                    i=0;
+                }
+
+            }, 1000);
+        }
+        bouton.addEventListener("click",spin);
+  
+    </script>
+</body>
+</html>
